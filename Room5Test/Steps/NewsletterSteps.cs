@@ -3,7 +3,6 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
-using OpenQA.Selenium.Support.UI;
 using Xunit;
 
 namespace Room5Test.Steps
@@ -20,7 +19,6 @@ namespace Room5Test.Steps
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
-            // _driver.Navigate().GoToUrl("http://room5.trivago.com/");
             _newsletterPage = Pages.Newsletter.NavigateTo(_driver);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50);
         }
@@ -50,11 +48,6 @@ namespace Room5Test.Steps
         {
             Assert.Equal("You are now checked-in!", _newsletterPage.NewsletterConfirmMsg());
             Thread.Sleep(5000);
-        }
-
-        [AfterScenario]
-        public void DisposeWebDriver()
-        {
             _driver.Dispose();
         }
     }

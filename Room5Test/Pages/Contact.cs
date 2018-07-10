@@ -1,29 +1,24 @@
 ﻿using System;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Threading;
-using OpenQA.Selenium.Support.UI;
-using Xunit;
-using OpenQA.Selenium.Support.PageObjects;
 using System.Linq;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Room5Test.Pages
 {
-    public class Contact
+    public class Contact : TestBase
     {
-        public readonly IWebDriver _driver;
+        private readonly IWebDriver _driver;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='footer - main']/div[1]/div[2]/div/div[2]/a")]
+        [FindsBy(How = How.LinkText, Using = "Contact")]
         private IWebElement _contactLink;
 
-        [FindsBy(How = How.XPath, Using = "//textarea[contains(@class,'contact-msg')]")]
+        [FindsBy(How = How.XPath, Using = "/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/textarea[1]")]
         private IWebElement _contactMsgFld;
 
-        [FindsBy(How = How.XPath, Using = "(//input[@class='contact-input'])[1]")]
+        [FindsBy(How = How.XPath, Using = "(//input[@class='contact-input'])")]
         private IWebElement _nameFld;
 
-        [FindsBy(How = How.Id, Using = "contact-email")]
+        [FindsBy(How = How.Id, Using = "//input[@id='contact-email']")]
         private IWebElement _emailFld;
 
         [FindsBy(How = How.Id, Using = "confirm")]
@@ -32,12 +27,21 @@ namespace Room5Test.Pages
         [FindsBy(How = How.XPath, Using = "//button[@class='contact-submit']")]
         private IWebElement _submitBtn;
 
+        [FindsBy(How = How.XPath, Using = "//p[@class='feedback']")]
+        private IWebElement _contactConfirmMsg;
+
         public Contact(IWebDriver driver)
         {
             _driver = driver;
             PageFactory.InitElements(_driver, this);
         }
 
+        //Navigate URL
+        public static Contact NavigateTo(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl(TestBase.PageUri);
+            return new Contact(driver);
+        }
 
         public void SelectContact()
         {
@@ -67,7 +71,8 @@ namespace Room5Test.Pages
         {
 
             {
-                _emailFld.SendKeys("'RandomString' + @yopmail.com");
+                String email = RandomString(10);
+                _emailFld.SendKeys(email + "@yopmail.com");
             }
         }
 
@@ -87,8 +92,17 @@ namespace Room5Test.Pages
             }
         }
 
-        public static Random random = new Random();
-        public static string RandomString(int length)
+        public string ContactConfirmMsg()
+        {
+
+            {
+                var _contactConfirmMsg = this._contactConfirmMsg.Text;
+                return _contactConfirmMsg;
+            }
+        }
+
+        public Random random = new Random();
+        public string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)

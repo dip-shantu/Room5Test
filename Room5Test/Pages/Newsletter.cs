@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Room5Test.Pages
@@ -16,7 +10,7 @@ namespace Room5Test.Pages
         [FindsBy(How = How.Id, Using = "confirm")]
         private IWebElement _newsletterCheckBox;
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='app']/div[3]/div/div[6]/section/div/div/div[2]/div[3]/div[1]/input")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='newsletter-email']/input")]
         private IWebElement _newsletterEmail;
 
         [FindsBy(How = How.XPath, Using = "//*[@id='app']/div[3]/div/div[6]/section/div/div/div[2]/div[3]/div[2]/button")]

@@ -1,15 +1,9 @@
-﻿using System;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System.Threading;
-using OpenQA.Selenium.Support.UI;
-using Xunit;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
 namespace Room5Test.Pages
 {
-    public class Search : TestBase
+    public class Search 
     {
         private readonly IWebDriver _driver;
         //private const string PageUri = @"http://room5.trivago.com/";

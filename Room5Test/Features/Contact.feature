@@ -5,7 +5,7 @@
 
 @mytag
 Scenario: Fill in the contact form and send it
-	Given I am on Room5 landing page
+	Given I am on home page
 	And I click contact link
 	And I enter message
 	And I enter name

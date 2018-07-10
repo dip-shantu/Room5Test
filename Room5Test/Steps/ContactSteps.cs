@@ -3,9 +3,9 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
-using OpenQA.Selenium.Support.UI;
 using Xunit;
 using OpenQA.Selenium.Interactions;
+
 
 namespace Room5Test.Steps
 {
@@ -13,54 +13,70 @@ namespace Room5Test.Steps
     public class ContactSteps : TestBase
     {
 
-        public IWebDriver _driver;
-        public Pages.Contact _contactPage;
+        private IWebDriver _driver;
+        private Pages.Contact _contactPage;
 
+        [Given(@"I am on home page")]
+        public void GivenIAmOnHomePage()
+        {
+            _driver = new ChromeDriver();
+            _driver.Manage().Window.Maximize();
+            _contactPage = Pages.Contact.NavigateTo(_driver);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        }
 
 
         [Given(@"I click contact link")]
         public void GivenIClickContactLink()
         {
             Thread.Sleep(5000);
+            IWebElement element= _driver.FindElement(By.LinkText("Contact"));
+            IJavaScriptExecutor jse = (IJavaScriptExecutor)_driver;
+            jse.ExecuteScript("arguments[0].scrollIntoView();", element);
+
             _contactPage.SelectContact();
-            //Actions action = new Actions(_driver); action.KeyDown(Keys.Control).KeyDown(Keys.Shift).SendKeys(Keys.Tab).Build().Perform();
+            Actions action = new Actions(_driver);
+            action.KeyDown(Keys.Control).SendKeys(Keys.Tab).Build().Perform();
             Thread.Sleep(5000);
         }
         
         [Given(@"I enter message")]
         public void GivenIEnterMessage()
         {
-            ScenarioContext.Current.Pending();
+            _contactPage.EnterMessage();
         }
         
         [Given(@"I enter name")]
         public void GivenIEnterName()
         {
-            ScenarioContext.Current.Pending();
+            _contactPage.EnterName();
         }
         
         [Given(@"I enter email")]
         public void GivenIEnterEmail()
         {
-            ScenarioContext.Current.Pending();
+            _contactPage.EnterEmail();
+            Thread.Sleep(5000);
         }
         
         [Given(@"I select checkbox")]
         public void GivenISelectCheckbox()
         {
-            ScenarioContext.Current.Pending();
+            _contactPage.ConfirmCheckBox();
         }
         
         [When(@"I press submit")]
         public void WhenIPressSubmit()
         {
-            ScenarioContext.Current.Pending();
+            _contactPage.SubmitContactForm();
+            Thread.Sleep(5000);
         }
         
         [Then(@"I get confirmation that message sent successfully")]
         public void ThenIGetConfirmationThatMessageSentSuccessfully()
         {
-            ScenarioContext.Current.Pending();
+            Assert.Equal("Message Sent Successfully!", _contactPage.ContactConfirmMsg());
+            _driver.Dispose();
         }
     }
 }

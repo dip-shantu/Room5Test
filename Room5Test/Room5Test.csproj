@@ -101,12 +101,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Contact.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Destination.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Destination.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Newsletter.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Newsletter.feature</DependentUpon>
     </Compile>
     <Compile Include="Pages\Contact.cs" />
+    <Compile Include="Pages\Destination.cs" />
     <Compile Include="Pages\Newsletter.cs" />
     <Compile Include="Pages\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +124,7 @@
     <Compile Include="Reports\ReportingManager.cs" />
     <Compile Include="Reports\ReportingTasks.cs" />
     <Compile Include="Steps\ContactSteps.cs" />
+    <Compile Include="Steps\DestinationSteps.cs" />
     <Compile Include="Steps\NewsletterSteps.cs" />
     <Compile Include="Steps\SearchSteps.cs" />
     <Compile Include="TestBase.cs" />
@@ -127,6 +134,10 @@
     <None Include="Features\Contact.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Contact.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Destination.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Destination.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Newsletter.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

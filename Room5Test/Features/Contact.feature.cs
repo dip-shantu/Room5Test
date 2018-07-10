@@ -83,7 +83,7 @@ namespace Room5Test.Features
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I am on Room5 landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I am on home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
  testRunner.And("I click contact link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10

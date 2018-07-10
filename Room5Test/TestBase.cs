@@ -12,7 +12,6 @@ namespace Room5Test
     public class TestBase
     {
         public static string PageUri = @"http://room5.trivago.com/";
-
     }
-   
+
 }
