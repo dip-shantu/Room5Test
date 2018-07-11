@@ -1,4 +1,4 @@
-# How to Run the tests
+# How to Run the tests:
 - Have to have Visual Studio installed in the mechine.
 - Clone the repository 
 - Go to repository location and open "Room5Test.sln" file
